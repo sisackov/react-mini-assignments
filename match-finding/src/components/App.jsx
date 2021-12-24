@@ -78,10 +78,6 @@ class App extends React.Component {
                         <CounterComponent counter={rejected} label='rejected' color='red' />
                         <CounterComponent counter={approved} label='approved' color='green' />
                     </div>
-                    <div className='image container'>
-
-                    </div>
-
                     <img
                         alt='Random Picsum'
                         src={imageUrl}

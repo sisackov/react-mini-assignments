@@ -81,7 +81,7 @@ class App extends React.Component {
 
     //TODO - add spinner
     render() {
-        const { products, categories, cartItems, isLoading } = this.state;
+        const { products, categories, cartItems } = this.state;
         return (
             <div>
                 <Router>

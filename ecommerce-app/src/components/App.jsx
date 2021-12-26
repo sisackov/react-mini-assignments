@@ -14,6 +14,7 @@ import {
     isLocalStorageInitialized,
     saveToLocalStorage,
 } from '../data/utils';
+import Spinner from './Spinner/Spinner';
 
 class App extends React.Component {
     state = {
@@ -85,9 +86,7 @@ class App extends React.Component {
         saveToLocalStorage('cartItems', []);
     };
 
-    //TODO - add spinner
-    render() {
-        const { products, categories, cartItems } = this.state;
+    renderSite = (products, categories, cartItems) => {
         return (
             <div>
                 <Router>
@@ -126,6 +125,16 @@ class App extends React.Component {
                 </Router>
             </div>
         );
+    };
+
+    render() {
+        const { products, categories, cartItems, isLoading } = this.state;
+
+        if (isLoading) {
+            return <Spinner />;
+        } else {
+            return this.renderSite(products, categories, cartItems);
+        }
     }
 }
 

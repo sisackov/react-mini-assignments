@@ -1,0 +1,194 @@
+/***********************************************************************************************************************
+ *
+ * Loader
+ *
+ **********************************************************************************************************************/
+.ui.active.dimmer {
+    display: flex;
+    opacity: 1;
+}
+
+.ui.big.text.loader {
+    min-width: 3.8rem;
+    padding-top: 4.5rem;
+}
+
+.ui.dimmer .ui.loader {
+    /* color of the text */
+    color: rgba(184, 10, 117, 0.9);
+}
+
+.ui.big.loader {
+    width: 3.8rem;
+    height: 3.8rem;
+    font-size: 1.3em;
+}
+
+.ui.text.loader {
+    width: auto;
+    height: auto;
+    text-align: center;
+    font-style: normal;
+}
+
+.ui.dimmer .loader {
+    display: block;
+}
+
+.ui.loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    text-align: center;
+    z-index: 1000;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.ui.dimmer {
+    display: none;
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    padding: 1em;
+    /* background color */
+    background-color: grey;
+    opacity: 0;
+    line-height: 1;
+    animation-fill-mode: both;
+    animation-duration: 0.5s;
+    transition: background-color 0.5s linear;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    -webkit-user-select: none;
+    user-select: none;
+    will-change: opacity;
+    z-index: 1000;
+}
+.ui.dimmer .ui.loader:before {
+    /* background of the loading circle */
+    border-color: rgba(31, 41, 182, 0.15);
+}
+
+.ui.big.loader:after,
+.ui.big.loader:before {
+    width: 3.8rem;
+    height: 3.8rem;
+    margin: -1rem 0 0 -2rem;
+}
+
+.ui.loader:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 500rem;
+    border: 0.2em solid rgba(0, 0, 0, 0.1);
+}
+
+.ui.dimmer .ui.loader:after {
+    /* background of the moving part of the circle */
+    border-color: blue transparent transparent;
+}
+
+.ui.loader:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    animation: loader 0.6s linear;
+    animation-iteration-count: infinite;
+    border-radius: 500rem;
+    border-color: #767676 transparent transparent;
+    border-style: solid;
+    border-width: 0.2em;
+    box-shadow: 0 0 0 1px transparent;
+}
+
+@keyframes loader {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/***********************************************************************************************************************
+ *
+ * Pini's Spinners
+ *
+ **********************************************************************************************************************/
+.background-spinner {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: cadetblue;
+    opacity: 0.8;
+}
+
+.spinner-1 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid grey;
+    border-top: 5px solid orange;
+    animation: spin 1s linear infinite;
+}
+
+.spinner-2 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border-top: 5px solid #f00;
+    border-right: 5px solid transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-3 {
+    display: flex;
+    justify-content: space-around;
+    width: 120px;
+    background: cadetblue;
+}
+
+.dot-1,
+.dot-2,
+.dot-3 {
+    height: 20px;
+    width: 20px;
+    background: #f00;
+    border-radius: 50%;
+    animation: change-color 1s linear infinite;
+}
+
+.dot-2 {
+    animation-delay: 0.5s;
+}
+
+.dot-3 {
+    animation-delay: 0.75s;
+}
+
+@keyframes change-color {
+    to {
+        background: gray;
+    }
+}

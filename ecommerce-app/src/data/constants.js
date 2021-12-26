@@ -17,3 +17,10 @@ export const categoryItems = {
         link: 'women',
     },
 };
+
+export const categoryTitles = {
+    electronics: 'Electronics',
+    jewelery: 'Jewelry',
+    men: `Men's clothing`,
+    women: `Women's clothing`,
+};

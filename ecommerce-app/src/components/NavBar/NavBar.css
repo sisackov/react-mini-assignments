@@ -1,0 +1,20 @@
+.navbar {
+    /* display: 'flex';
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        background: 'gray',
+        borderBottom: '1px solid black',
+        height: '50px', */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: #afab76;
+    border-bottom: 1px solid black;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+}
+
+.navbar__item {
+    margin-right: 1rem;
+}

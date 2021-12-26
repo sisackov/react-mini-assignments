@@ -1,25 +1,37 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Navbar from './Navbar';
+import NavBar from './NavBar/NavBar';
 import ProductList from './ProductList/ProductList';
 import LandingPage from '../pages/LandingPage';
 import Shop from '../pages/Shop';
 import Categories from '../pages/Categories';
 import NotFound from '../pages/NotFound';
 import API from '../api/fakeStore';
-import { isLocalStorageInitialized, saveToLocalStorage } from '../data/utils';
+import {
+    getFromLocalStorage,
+    isLocalStorageInitialized,
+    saveToLocalStorage,
+} from '../data/utils';
 
 class App extends React.Component {
-    state = { products: [], categories: [], isLoading: true, errorMsg: '' };
+    state = {
+        products: [],
+        categories: [],
+        cartItems: [],
+        isLoading: true,
+        errorMsg: '',
+    };
 
     async componentDidMount() {
         this.setState({ isLoading: true });
 
         let products = [],
-            categories = [];
+            categories = [],
+            cartItems = [];
         if (isLocalStorageInitialized()) {
             products = JSON.parse(localStorage.getItem('products'));
             categories = JSON.parse(localStorage.getItem('categories'));
+            cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         } else {
             try {
                 const productsData = await API.get('products');
@@ -33,16 +45,25 @@ class App extends React.Component {
                 this.setState({ errorMsg: e.message });
             }
         }
-        this.setState({ products, categories, isLoading: false });
+        this.setState({ products, categories, cartItems, isLoading: false });
     }
+
+    handleAddToCart = (product) => {
+        const { cartItems } = this.state;
+        const newItem = { productId: product.id, quantity: 1 };
+        const newCart = cartItems ? [...cartItems, newItem] : [newItem];
+        this.setState({ cartItems: newCart });
+        saveToLocalStorage('cartItems', newCart);
+    };
 
     //TODO - add spinner
     render() {
-        const { products, categories, isLoading } = this.state;
+        const { products, categories, cartItems, isLoading } = this.state;
+        console.log('cartItems', cartItems);
         return (
             <div>
                 <Router>
-                    <Navbar />
+                    <NavBar cartItemsCount={cartItems ? cartItems.length : 0} />
                     {/* switches purpose renders the first match only */}
                     <Switch>
                         <Route exact path='/' component={LandingPage} />
@@ -52,10 +73,17 @@ class App extends React.Component {
                         <Route exact path='/categories'>
                             <Categories categories={categories} />
                         </Route>
-
-                        <Route exact path='/shop/:category'>
-                            <ProductList products={products} ha />
-                        </Route>
+                        <Route
+                            exact
+                            path='/shop/:category'
+                            render={(props) => (
+                                <ProductList
+                                    products={products}
+                                    handleAddToCart={this.handleAddToCart}
+                                    {...props}
+                                />
+                            )}
+                        />
 
                         {/* <Route exact path='/checkout' component={Checkout} /> */}
                         <Route component={NotFound} />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Checkout.css';
 
 const Checkout = (props) => {
@@ -66,12 +67,15 @@ const Checkout = (props) => {
                     Total Price: $
                     {(Math.round(totalPrice * 100) / 100).toFixed(2)}
                 </h3>
-                <button
-                    className='btn btn-primary'
-                    onClick={() => handlePayment()}
-                >
-                    Proceed to payment
-                </button>
+
+                <Link to='/payment'>
+                    <button
+                        className='btn btn-primary'
+                        onClick={() => handlePayment()}
+                    >
+                        Proceed to payment
+                    </button>
+                </Link>
             </div>
         </div>
     );

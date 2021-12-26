@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { categoryItems } from '../../data/constants';
+import './Shop.css';
 
 class Shop extends React.Component {
     constructor(props) {
@@ -30,7 +33,6 @@ class Shop extends React.Component {
                         />
                         <div className='card-body'>
                             <h5 className='card-title'>{product.title}</h5>
-                            <p className='card-text'>{product.description}</p>
                             <p className='card-text'>${product.price}</p>
                         </div>
                     </div>
@@ -44,11 +46,15 @@ class Shop extends React.Component {
             this.state.categories &&
             this.state.categories.map((category) => {
                 return (
-                    <div key={category}>
-                        <h3>{category}</h3>
+                    <div className='category-section' key={category}>
+                        <h3>{categoryItems[category].title}</h3>
                         <div className='product-row'>
                             {this.renderProductRow(category)}
                         </div>
+                        <Link to={`/shop/${category}`}>
+                            {' '}
+                            See more in {category}{' '}
+                        </Link>
                     </div>
                 );
             })

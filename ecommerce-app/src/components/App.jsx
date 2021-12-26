@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar/NavBar';
 import ProductList from './ProductList/ProductList';
 import Checkout from './Checkout/Checkout';
+import Payment from './Payment/Payment';
 import LandingPage from '../pages/LandingPage';
-import Shop from '../pages/Shop';
+import Shop from '../pages/Shop/Shop';
 import Categories from '../pages/Categories';
 import NotFound from '../pages/NotFound';
 import API from '../api/fakeStore';
@@ -79,6 +80,11 @@ class App extends React.Component {
         this.handleAddRemoveItem(productId, -1);
     };
 
+    handlePayment = () => {
+        this.setState({ cartItems: [] });
+        saveToLocalStorage('cartItems', []);
+    };
+
     //TODO - add spinner
     render() {
         const { products, categories, cartItems } = this.state;
@@ -111,8 +117,10 @@ class App extends React.Component {
                                 cartItems={cartItems}
                                 handleAddItem={this.handleAddItem}
                                 handleDeductItem={this.handleDeductItem}
+                                handlePayment={this.handlePayment}
                             />
                         </Route>
+                        <Route exact path='/payment' component={Payment} />
                         <Route component={NotFound} />
                     </Switch>
                 </Router>

@@ -1,10 +1,4 @@
 .navbar {
-    /* display: 'flex';
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        background: 'gray',
-        borderBottom: '1px solid black',
-        height: '50px', */
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -12,7 +6,7 @@
     border-bottom: 1px solid black;
     height: 50px;
     width: 100%;
-    position: fixed;
+    position: sticky;
 }
 
 .navbar__item {

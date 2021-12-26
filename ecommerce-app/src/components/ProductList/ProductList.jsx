@@ -1,14 +1,17 @@
 import React from 'react';
-import { categoryTitles } from '../../data/constants';
+import { categorySearches, categoryTitles } from '../../data/constants';
 import './ProductList.css';
 
 const ProductList = (props) => {
     const { products, handleAddToCart } = props;
     const categoryTitle = categoryTitles[props.match.params.category];
-    const category = categoryTitle.toLowerCase();
+    const category = categorySearches[props.match.params.category];
     const productsInCategory = products.filter(
         (product) => product.category === category
     );
+    console.log('products', products);
+    console.log('productsInCategory', productsInCategory);
+    console.log('category', category);
 
     return (
         <div className='product-list-wrapper'>

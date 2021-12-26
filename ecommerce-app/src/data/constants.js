@@ -24,3 +24,10 @@ export const categoryTitles = {
     men: `Men's clothing`,
     women: `Women's clothing`,
 };
+
+export const categorySearches = {
+    electronics: 'electronics',
+    jewelery: 'jewelery',
+    men: `men's clothing`,
+    women: `women's clothing`,
+};
